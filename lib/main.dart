@@ -4,6 +4,8 @@ void main() {
   runApp(const MainApp());
 }
 
+final List<String> names = ['Max', 'David', 'Torsten', 'Jessi', 'Theo'];
+
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
@@ -15,42 +17,19 @@ class MainApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('Meine App'),
         ),
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                Text('Hello Torsten!'),
-                Divider(),
-                Text(
-                  'Was anderes',
-                ),
-                Divider(),
-                InfoCard(
-                  color: Colors.amber,
-                  text: 'Coole Info Karte',
-                ),
-                InfoCard(
-                  color: Colors.green,
-                  text: 'Nicht so coole Info Karte',
-                ),
-                InfoCard(
-                  color: Colors.green,
-                  text: 'Nicht so coole Info Karte',
-                ),
-                InfoCard(
-                  color: Colors.green,
-                  text: 'Nicht so coole Info Karte',
-                ),
-                InfoCard(
-                  color: Colors.green,
-                  text: 'Nicht so coole Info Karte',
-                ),
-                FilledButton(
-                  onPressed: () {},
-                  child: Text('Mein Button'),
-                )
-              ],
-            ),
+        body: SafeArea(
+          child: ListView.separated(
+            itemCount: names.length,
+            separatorBuilder: (context, index) => Divider(),
+            itemBuilder: (context, index) {
+              return ListTile(
+                onTap: () => print('${names[index]} wurde getapped'),
+                subtitle: Text('Person'),
+                title: Text(names[index]),
+                leading: Icon(Icons.person),
+                trailing: Icon(Icons.chevron_right),
+              );
+            },
           ),
         ),
         floatingActionButton: FloatingActionButton(
@@ -60,6 +39,10 @@ class MainApp extends StatelessWidget {
       ),
     );
   }
+}
+
+void onButtonPressed() {
+  print('Button wurde gedrückt');
 }
 
 class InfoCard extends StatelessWidget {
@@ -78,7 +61,29 @@ class InfoCard extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Text(text, style: TextStyle(fontSize: 24)),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            spacing: 6,
+            children: [
+              Icon(
+                Icons.info,
+                size: 16,
+                color: Colors.white,
+              ),
+              Text(
+                'Info',
+              ),
+            ],
+          ),
+          Text(
+            text,
+            style: TextStyle(fontSize: 24),
+          ),
+        ],
+      ),
     );
   }
 }
