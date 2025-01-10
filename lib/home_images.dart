@@ -19,7 +19,7 @@ class HomeImages extends StatelessWidget {
       body: ListView(
         children: [
           if (names.isEmpty) Text('Liste ist leer'),
-          for (final item in names) Text(item),
+          for (final name in names) ListTile(title: Text(name)),
           Image.asset('assets/images/image.png'),
           Container(
             decoration: BoxDecoration(

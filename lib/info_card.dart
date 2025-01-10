@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/app_colors.dart';
 
 class InfoCard extends StatelessWidget {
   const InfoCard({required this.color, required this.text, super.key});
@@ -26,7 +27,7 @@ class InfoCard extends StatelessWidget {
               Icon(
                 Icons.info,
                 size: 16,
-                color: Colors.white,
+                color: AppColors.primary,
               ),
               Text(
                 'Info',
