@@ -17,6 +17,7 @@ class HomeImages extends StatelessWidget {
         title: Text('Home Images'),
       ),
       body: ListView(
+        padding: EdgeInsets.all(12),
         children: [
           if (names.isEmpty) Text('Liste ist leer'),
           for (final name in names) ListTile(title: Text(name)),
@@ -36,16 +37,81 @@ class HomeImages extends StatelessWidget {
           SizedBox(
             height: 32,
           ),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.info_outline,
+                        color: Colors.blueGrey,
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Text('Meine Karte'),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {},
+                        child: Text('Cancel'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Meine Snackbar'),
+                              action: SnackBarAction(
+                                  label: 'Ok',
+                                  onPressed: () {
+                                    print('Snackbar OK wurde gedrückt');
+                                  }),
+                            ),
+                          );
+                        },
+                        child: Text('Ok'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
           TextButton(
             onPressed: () {},
             child: Text('Mein Textbutton'),
           ),
           FilledButton(
             onPressed: () {
-              print('Filledbutton gedrückt');
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: Text('Willst du deinen Account wirklich löschen?'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Abbrechen'),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text('Ok'),
+                    ),
+                  ],
+                ),
+              );
             },
             child: Text('Mein Button'),
-          )
+          ),
+          SizedBox(
+            height: 62,
+          ),
         ],
       ),
     );
