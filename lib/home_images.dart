@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/info_bottom_sheet.dart';
 
 class HomeImages extends StatelessWidget {
   HomeImages({super.key});
@@ -22,16 +23,21 @@ class HomeImages extends StatelessWidget {
           if (names.isEmpty) Text('Liste ist leer'),
           for (final name in names) ListTile(title: Text(name)),
           Image.asset('assets/images/image.png'),
-          Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-            ),
-            width: 150,
-            height: 150,
-            clipBehavior: Clip.antiAlias,
-            child: Image.network(
-              'https://plus.unsplash.com/premium_photo-1670493556860-13e006e6faa4?q=80&w=3097&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {
+              print('Auf image getapped');
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              width: 150,
+              height: 150,
+              clipBehavior: Clip.antiAlias,
+              child: Image.network(
+                'https://plus.unsplash.com/premium_photo-1670493556860-13e006e6faa4?q=80&w=3097&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(
@@ -82,10 +88,17 @@ class HomeImages extends StatelessWidget {
               ),
             ),
           ),
-          TextButton(
-            onPressed: () {},
-            child: Text('Mein Textbutton'),
-          ),
+          Builder(builder: (context) {
+            return TextButton(
+              onPressed: () {
+                showBottomSheet(
+                  context: context,
+                  builder: (context) => InfoBottomSheet(),
+                );
+              },
+              child: Text('Show BottomSheet'),
+            );
+          }),
           FilledButton(
             onPressed: () {
               showDialog(
