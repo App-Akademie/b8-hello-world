@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class GridPage extends StatelessWidget {
-  const GridPage({super.key});
+class GalleryPage extends StatelessWidget {
+  const GalleryPage({super.key});
 
   static const List<String> images = [
     'https://images.unsplash.com/photo-1477601263568-180e2c6d046e?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
@@ -13,28 +13,23 @@ class GridPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Grid Page'),
-      ),
-      body: GridView.count(
-        crossAxisCount: 3,
-        children: [
-          for (int i = 0; i < images.length; i++)
-            TappableImage(i: i, images: images),
-          for (final image in images)
-            Image.network(
-              image,
-              fit: BoxFit.cover,
-            ),
-          ...images.map(
-            (e) => Image.network(
-              e,
-              fit: BoxFit.cover,
-            ),
+    return GridView.count(
+      crossAxisCount: 3,
+      children: [
+        for (int i = 0; i < images.length; i++)
+          TappableImage(i: i, images: images),
+        for (final image in images)
+          Image.network(
+            image,
+            fit: BoxFit.cover,
           ),
-        ],
-      ),
+        ...images.map(
+          (e) => Image.network(
+            e,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ],
     );
   }
 }
