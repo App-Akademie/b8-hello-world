@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world/gallery/detail_page.dart';
 
 class GalleryPage extends StatelessWidget {
   const GalleryPage({super.key});
@@ -53,12 +54,16 @@ class _TappableImageState extends State<TappableImage> {
 
   @override
   Widget build(BuildContext context) {
+    final imageUrl = widget.images[widget.i];
     return GestureDetector(
       onTap: () {
-        print('Auf ${widget.i + 1}. image getapped');
-        setState(() {
-          showOverlay = !showOverlay;
-        });
+        // vorher:
+        // showBottomSheet(
+        //     context: context,
+        //     builder: (context) => DetailPage(imageUrl: imageUrl));
+        // nachher:
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => DetailPage(imageUrl: imageUrl)));
       },
       child: Stack(
         fit: StackFit.expand,
