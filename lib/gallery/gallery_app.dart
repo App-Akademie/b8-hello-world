@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:hello_world/gallery/about_me_page.dart';
 import 'package:hello_world/gallery/gallery_page.dart';
+import 'package:hello_world/main.dart';
 
 class GalleryApp extends StatefulWidget {
-  const GalleryApp({super.key});
+  const GalleryApp(
+      {required this.onThemeChange, required this.useDarkmode, super.key});
+  final void Function() onThemeChange;
+  final bool useDarkmode;
 
   @override
   State<GalleryApp> createState() => _GalleryAppState();
@@ -17,6 +21,14 @@ class _GalleryAppState extends State<GalleryApp> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Gallery'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              widget.onThemeChange();
+            },
+            icon: Icon(widget.useDarkmode ? Icons.light_mode : Icons.dark_mode),
+          ),
+        ],
       ),
       body: [
         GalleryPage(),

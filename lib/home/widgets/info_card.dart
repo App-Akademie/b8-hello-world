@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/app_colors.dart';
+import 'package:hello_world/theme/app_colors.dart';
 
 class InfoCard extends StatelessWidget {
   const InfoCard({required this.color, required this.text, super.key});

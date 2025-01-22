@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/info_bottom_sheet.dart';
+import 'package:hello_world/home/widgets/info_bottom_sheet.dart';
 
 class HomeImages extends StatelessWidget {
   HomeImages({super.key});
